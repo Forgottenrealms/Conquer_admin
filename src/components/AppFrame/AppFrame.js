@@ -17,6 +17,12 @@ class AppFrame extends Component {
     history.push(`${match.path}${key}`)
   }
   render() {
+    const {
+      pathname
+    } = this.props.location;
+    // console.log(pathname)
+    const defaultSelectedKeys = pathname.split("/").slice(2).join("/");
+
     // console.log(this.props.children);
     // 获取isMenu === true的路由
     const menus = routes.filter(item => item.isMenu === true);
@@ -29,7 +35,7 @@ class AppFrame extends Component {
           <Sider width={200} style={{ background: "#fff" }}>
             <Menu
               mode="inline"
-              defaultSelectedKeys={["1"]}
+              defaultSelectedKeys={[`/${defaultSelectedKeys}`]}
               defaultOpenKeys={["sub1"]}
               style={{ height: "100%", borderRight: 0 }}
               onClick={this.handleMenuClick}

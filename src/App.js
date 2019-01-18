@@ -13,7 +13,7 @@ class App extends Component {
           {
             routes.map(item => {
               // console.log(item)
-              console.log(this.props.match.path)
+              // console.log(this.props.match.path)
               return (
                 <Route 
                   path={`${this.props.match.path}${item.path}`}
