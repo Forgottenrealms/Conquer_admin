@@ -9,6 +9,17 @@ import "./AppFrame.less";
 const { Header, Content, Sider } = Layout;
 
 class AppFrame extends Component {
+  // 菜单缩起展开
+  state = {
+    collapsed: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
+  // 菜单点击
   handleMenuClick = ({ key }) => {
       const {
         history,
@@ -32,8 +43,16 @@ class AppFrame extends Component {
           <div className="logo">Conquer管理系统</div>
         </Header>
         <Layout>
-          <Sider width={200} style={{ background: "#fff" }}>
+          <Sider 
+            width={200} 
+            style={{ background: "#fff" }}
+            trigger={null}
+            // mode="inline"
+            collapsible
+            collapsed={this.state.collapsed}
+          >
             <Menu
+              theme="dark"
               mode="inline"
               defaultSelectedKeys={[`/${defaultSelectedKeys}`]}
               defaultOpenKeys={["sub1"]}
@@ -44,13 +63,24 @@ class AppFrame extends Component {
                 return (
                   <Menu.Item key={menu.path}>
                     <Icon type={menu.iconType} />
-                    {menu.title}
+                    {this.state.collapsed ? "" : menu.title}
                   </Menu.Item>
-                );
+                )
               })}
             </Menu>
           </Sider>
           <Layout style={{ padding: "0 24px 24px" }}>
+            {/* 菜单缩起展开 */}
+            <Header 
+              className="draw-back"
+              style={{ background: '#fff', padding: 0 }}
+            >
+              <Icon
+                className="trigger"
+                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.toggle}
+              />
+            </Header>
             <Content
               style={{
                 background: "#fff",

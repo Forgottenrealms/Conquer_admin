@@ -118,10 +118,11 @@ export default class DataTables extends Component {
         });
       }
     });
+    // document.getElementsByTagName("thead")[0].style.backgroundColor = "#000"
   }
   render() {
     return (
-        <div id="dataTables">
+        <div>
             {/* TODO:标题左边图标 */}
             <Card
                 title="Order Listing"
@@ -152,6 +153,7 @@ export default class DataTables extends Component {
                 }
             > 
             <Table
+                className="data-tables"
                 loading={this.state.isLoading}
                 // rowkey={record => record.id}
                 columns={this.columns}
@@ -159,9 +161,13 @@ export default class DataTables extends Component {
                 bordered
                 pagination={{
                     hideOnSinglePage: true,
-                    showSizeChanger: true
+                    showQuickJumper: true,
+                    position: "both"
                 }}
-                size="small"
+                size="middle"
+                onRow={(record, index) => {
+                  
+                }}
             />
             </Card>
         </div>

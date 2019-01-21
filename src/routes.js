@@ -1,4 +1,5 @@
-import { DashBoard, ArticleEdit, ArticleList, DataEdit, DataTables, DataDetails } from "./pages";
+import { DashBoard, ArticleEdit, ArticleList, DataEdit, DataTables, DataDetails, Users } from "./pages";
+import UsersProfil from "./pages/Users/Users/UsersProfil";
 
 const routes = [
   {
@@ -44,6 +45,14 @@ const routes = [
     title: "数据详情",
     component: DataDetails,
     isMenu: false,
+    exact: false
+  },
+  {
+    path: "/users/profil",
+    title: "Profil",
+    iconType: "user",
+    component: UsersProfil,
+    isMenu: true,
     exact: false
   }
 ];
